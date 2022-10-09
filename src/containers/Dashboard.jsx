@@ -12,8 +12,8 @@ import { loadUsersAsync, removeUserAsync } from '../store/thunks/usersThunk';
 import LoadingSpinner from '../components/common/LoadingSpinner';
 
 const Dashboard = (props) => {
-  const [currentTab, setCurrentTab] = useState('Attendances');
-  const [showAttendancesForm, setShowAttendancesForm] = useState(false);
+  const [currentTab, setCurrentTab] = useState('counters');
+  const [showcountersForm, setShowcountersForm] = useState(false);
   const [currentIndex, setCurrentIndex] = React.useState(0);
 
   const {
@@ -41,12 +41,12 @@ const Dashboard = (props) => {
     setCurrentIndex(index);
   };
 
-  const handleToggleAttendancesForm = () => {
-    setShowAttendancesForm(!showAttendancesForm);
+  const handleTogglecountersForm = () => {
+    setShowcountersForm(!showcountersForm);
   };
 
   const handleSubmitForm = (values) => {
-    // addAttendances(values);
+    // addcounters(values);
   };
 
   return (
@@ -67,13 +67,13 @@ const Dashboard = (props) => {
               <a
                 href="#f"
                 className={
-                  currentTab === 'Attendances'
+                  currentTab === 'counters'
                     ? 'dashboard-tab d-flex flex-center active'
                     : 'dashboard-tab d-flex flex-center'
                 }
-                onClick={() => handleTabClick('Attendances')}
+                onClick={() => handleTabClick('counters')}
               >
-                Attendances
+                counters
               </a>
             </li>
             <li className="flex-unit">
@@ -93,7 +93,7 @@ const Dashboard = (props) => {
         </div>
       </div>
      {/* <div>
-       Attendances logic here
+       counters logic here
      </div> */}
     </div>
   );
@@ -106,14 +106,14 @@ Dashboard.defaultProps = {
 Dashboard.propTypes = {
   history: PropTypes.objectOf(PropTypes.any).isRequired,
   currentUser: PropTypes.objectOf(PropTypes.any),
-  loadAttendances: PropTypes.func.isRequired,
+  loadcounters: PropTypes.func.isRequired,
   isAdmin: PropTypes.bool.isRequired,
   toggleSidebar: PropTypes.func.isRequired,
   loadUsers: PropTypes.func.isRequired,
   users: PropTypes.arrayOf(PropTypes.object).isRequired,
   removeUser: PropTypes.func.isRequired,
-  removeAttendance: PropTypes.func.isRequired,
-  // loadingAttendances: PropTypes.bool.isRequired,
+  removecounter: PropTypes.func.isRequired,
+  // loadingcounters: PropTypes.bool.isRequired,
   loadingUsers: PropTypes.bool.isRequired,
 };
 
@@ -122,7 +122,7 @@ const mapStateToProps = (state) => ({
   isAdmin: state.auth.isAdmin,
   users: state.users.list,
   removeUser: state.users.removeUser,
-  loadingAttendances: state.Attendances.loading,
+  loadingcounters: state.counters.loading,
   loadingUsers: state.users.loading,
 });
 

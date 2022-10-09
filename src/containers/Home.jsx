@@ -32,7 +32,7 @@ const Home = (props) => {
 
  
         <>
-          <div className="home-attendances-counter-wrapper d-flex flex-center">
+          <div className="home-counters-counter-wrapper d-flex flex-center">
               <h1>Welcome user, here is koa frontend application</h1>
           </div>
           {' '}
