@@ -32,7 +32,7 @@ export const loginUserAsync = (user) => async (dispatch) => {
     const response = await http.post(`${apiEndPoint}signin`, user);
     storage.setAuthToken(response.data.data);
     const loggedInUser = jwt.decode(response.data.data);
-    dispatch(loginSuccess(loggedInUser));
+    dispatch(loginSuccess("Logined in", loggedInUser));
     toast.success(`😊 ${response.data.message}`);
   } catch (error) {
     dispatch(loginFailure(error.response.data.message));
