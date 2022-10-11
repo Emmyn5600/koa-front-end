@@ -2,10 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import User from '../components/User';
 
-const UsersList = ({ users, currentUser, onRemoveUser }) => (
+const UsersList = ({ users, currentUser }) => (
   <div className="users-list-main-container">
-    {users.map((user) => (
-      <User user={user} key={user.id} currentUser={currentUser} onRemoveUser={onRemoveUser} />
+    {users?.allUsers?.map((user) => (
+      <User user={user} key={user.id} currentUser={currentUser} />
     ))}
   </div>
 );
@@ -13,7 +13,6 @@ const UsersList = ({ users, currentUser, onRemoveUser }) => (
 UsersList.propTypes = {
   users: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
   currentUser: PropTypes.shape({}).isRequired,
-  onRemoveUser: PropTypes.func.isRequired,
 };
 
 export default UsersList;

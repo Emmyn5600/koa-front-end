@@ -3,6 +3,7 @@ import { toast } from "react-toastify";
 import storage from "../utils/localStorage";
 
 axios.defaults.headers.common.Authorization = storage.getAuthToken();
+axios.defaults.headers.authorization = `Bearer ${storage.getAuthToken()}`;
 axios.interceptors.response.use(null, (error) => {
   const expectedError =
     error.response &&

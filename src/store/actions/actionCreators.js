@@ -13,8 +13,8 @@ import {
   REMOVE_USER_FAILURE,
   LOAD_USER_FAILURE,
   LOAD_USER_SUCCESS,
-  UPDATE_USER_SUCCESS,
-  UPDATE_USER_FAILURE,
+  LOAD_ATTENDANCES_SUCCESS,
+  LOAD_ATTENDANCES_FAILURE,
 } from "./actionTypes";
 
 export const apiCallBegin = () => ({
@@ -40,9 +40,9 @@ export const loginFailure = (error) => ({
   payload: error,
 });
 
-export const loginSuccess = (user) => ({
+export const loginSuccess = (user, data) => ({
   type: LOGIN_SUCCESS,
-  payload: user,
+  payload: { user, data },
 });
 
 export const authLogout = () => ({
@@ -83,12 +83,12 @@ export const loadUserFailure = (error) => ({
   payload: error,
 });
 
-export const updateUserSuccess = (user) => ({
-  type: UPDATE_USER_SUCCESS,
-  payload: user,
+export const loadAttendancesSuccess = (attendances) => ({
+  type: LOAD_ATTENDANCES_SUCCESS,
+  payload: attendances,
 });
 
-export const updateUserFailure = (error) => ({
-  type: UPDATE_USER_FAILURE,
+export const loadAttendancesFailure = (error) => ({
+  type: LOAD_ATTENDANCES_FAILURE,
   payload: error,
 });

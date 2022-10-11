@@ -6,8 +6,6 @@ import {
   SIGNUP_SUCCESS,
   LOGIN_FAILURE,
   LOGOUT_SUCCESS,
-  UPDATE_USER_SUCCESS,
-  UPDATE_USER_FAILURE,
 } from "../actions/actionTypes";
 
 const initialState = {
@@ -15,7 +13,9 @@ const initialState = {
   isAuthenticated: !!storage.getCurrentUser(),
   loading: false,
   error: null,
-  isAdmin: storage.getCurrentUser() ? storage.getCurrentUser().is_admin : false,
+  isAdmin: storage.getCurrentUser()
+    ? storage.getCurrentUser().role === "admin"
+    : false,
 };
 
 const auth = (state = initialState, action) => {
@@ -32,7 +32,7 @@ const auth = (state = initialState, action) => {
         ...state,
         loading: false,
         currentUser: action.payload,
-        isAdmin: action.payload.is_admin,
+        isAdmin: action.payload.role,
         isAuthenticated: true,
         error: null,
       };
@@ -49,8 +49,8 @@ const auth = (state = initialState, action) => {
       return {
         ...state,
         loading: false,
-        currentUser: action.payload,
-        isAdmin: action.payload.is_admin,
+        currentUser: action.payload.data,
+        isAdmin: action.payload.user,
         isAuthenticated: true,
         error: null,
       };
@@ -70,21 +70,6 @@ const auth = (state = initialState, action) => {
         isAdmin: false,
         isAuthenticated: false,
         error: null,
-        loading: false,
-      };
-    case UPDATE_USER_SUCCESS:
-      return {
-        ...state,
-        currentUser: action.payload,
-        isAdmin: action.payload.is_admin,
-        isAuthenticated: true,
-        error: null,
-        loading: false,
-      };
-    case UPDATE_USER_FAILURE:
-      return {
-        ...state,
-        error: action.payload,
         loading: false,
       };
     default:

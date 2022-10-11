@@ -4,17 +4,15 @@ import { Link, useLocation } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { IconContext } from 'react-icons';
 import { GrClose } from 'react-icons/gr';
-
 import { toggleSidebar } from '../store/actions/actionCreators';
-
 import defaultAvatar from './defaultAvatar.png';
 
 const Sidebar = (props) => {
   const { currentUser, sidebar, toggleSidebar } = props;
   const { pathname } = useLocation();
   const {
-    first_name: firstName,
-    last_name: lastName,
+    username: username,
+    position: position,
     email,
     avatar,
     id,
@@ -49,9 +47,9 @@ const Sidebar = (props) => {
             </div>
           </Link>
           <h1 className="user-names">
-            {firstName}
+            {username}
             {' '}
-            {lastName}
+            {position}
             {' '}
           </h1>
           <span className="user-email">{email}</span>
@@ -67,7 +65,7 @@ const Sidebar = (props) => {
                 Home
               </Link>
             </li>
-            {currentUser.is_admin && (
+            {currentUser &&  currentUser.role == 'admin' && (
             <li>
               <Link
                 to="/dashboard"
@@ -78,6 +76,7 @@ const Sidebar = (props) => {
               </Link>
             </li>
             )}
+
           </ul>
           <ul className="sidebar-links-wrapper">
             <hr className="links-separator" />
