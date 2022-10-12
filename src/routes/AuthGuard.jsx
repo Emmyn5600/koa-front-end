@@ -8,7 +8,6 @@ const AuthGuard = ({ children }) => {
   useEffect(() => {
     const token = storage.getAuthToken();
     if (!!token && pathname !== '/signup') {
-      console.log('redirecting...');
       return <Redirect to="/login" />;
     }
     return {};

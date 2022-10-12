@@ -15,12 +15,10 @@ import {
   LOAD_USER_SUCCESS,
   LOAD_ATTENDANCES_SUCCESS,
   LOAD_ATTENDANCES_FAILURE,
-  UPDATE_ATTENDANCES_REQUEST,
-  UPDATE_ATTENDANCES_SUCCESS,
-  UPDATE_ATTENDANCES_FAIL,
-  ATTENDANCE_DETAILS_REQUEST,
-  ATTENDANCE_DETAILS_SUCCESS,
-  ATTENDANCE_DETAILS_FAIL,
+  LOAD_USER_ATTENDANCE_SUCCESS,
+  LOAD_USER_ATTENDANCE_FAIL,
+  UPDATE_ATTENDANCE_SUCCESS,
+  UPDATE_ATTENDANCE_FAIL,
 } from "./actionTypes";
 
 import axios from "axios";
@@ -101,55 +99,22 @@ export const loadAttendancesFailure = (error) => ({
   payload: error,
 });
 
-export const loadAttendanceDetails = (id) => async (dispatch) => {
-  try {
-    dispatch({ type: ATTENDANCE_DETAILS_REQUEST });
-    const { data } = await axios.get(`getAttendance/${id}`);
-    dispatch({
-      type: ATTENDANCE_DETAILS_SUCCESS,
-      payload: data,
-    });
-  } catch (error) {
-    dispatch({
-      type: ATTENDANCE_DETAILS_FAIL,
-      payload:
-        error.response && error.response.data.message
-          ? error.response.data.message
-          : error.message,
-    });
-  }
-};
+export const loadUserAttendanceSuccess = (attendance) => ({
+  type: LOAD_USER_ATTENDANCE_SUCCESS,
+  payload: attendance,
+});
 
-export const updateAttendance = (attendance) => async (dispatch, getState) => {
-  try {
-    dispatch({ type: UPDATE_ATTENDANCES_REQUEST });
+export const loadUserAttendanceFailure = (error) => ({
+  type: LOAD_USER_ATTENDANCE_FAIL,
+  payload: error,
+});
 
-    const {
-      loggedInUser: { userInfo },
-    } = getState();
-    const config = {
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${userInfo.token}`,
-      },
-    };
+export const updateAttendanceSuccess = (attendance) => ({
+  type: UPDATE_ATTENDANCE_SUCCESS,
+  payload: attendance,
+});
 
-    const { data } = await axios.put(
-      `/attedances/${attendance._id}`,
-      attendance,
-      config
-    );
-    dispatch({
-      type: UPDATE_ATTENDANCES_SUCCESS,
-      payload: data,
-    });
-  } catch (error) {
-    dispatch({
-      type: UPDATE_ATTENDANCES_FAIL,
-      payload:
-        error.response && error.response.data.message
-          ? error.response.data.message
-          : error.message,
-    });
-  }
-};
+export const updateAttendanceFailure = (error) => ({
+  type: UPDATE_ATTENDANCE_FAIL,
+  payload: error,
+});

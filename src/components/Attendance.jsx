@@ -3,14 +3,15 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { IconContext } from 'react-icons';
 import { BiEdit } from 'react-icons/bi';
-import defaultAvatar from './defaultAvatar.png';
 
 const Attendance = ({ attendance, dashboard }) => (
     <div className="attendance-main-wrapper d-flex flex-column">
       { dashboard && (
       <button type="button" className="attendance-delete-btn">
         <IconContext.Provider value={{ className: 'attendance-delete-trash-icon' }}>
-          <BiEdit />
+          <Link to={`/attendance/${attendance.user.id}/edit`}>
+            <BiEdit />
+          </Link>
         </IconContext.Provider>
       </button>
       )}

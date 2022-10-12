@@ -1,104 +1,117 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { Form, Button } from "react-bootstrap";
-import { useDispatch, useSelector } from "react-redux";
-import Message from "../services/Message";
-import LoadingSpinner from "./common/LoadingSpinner";
-import { loadAttendanceDetails, updateAttendance } from "../store/actions/actionCreators";
-import FormContainer from "../services/FormContainer";
-import { UPDATE_ATTENDANCES_RESET } from "../store/actions/actionTypes";
+import { connect } from 'react-redux';
+import { updateAttendanceAsync, loadUserAttendanceAsync } from "../store/thunks/attendancesThunk"
+import Avatar from '@mui/material/Avatar';
+import Button from '@mui/material/Button';
+import CssBaseline from '@mui/material/CssBaseline';
+import TextField from '@mui/material/TextField';
+import Grid from '@mui/material/Grid';
+import Box from '@mui/material/Box';
+import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
+import Typography from '@mui/material/Typography';
+import Container from '@mui/material/Container';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 
+const theme = createTheme();
 
-const AttendanceEdit = ({ match, history }) => {
-  const attendanceId = match.params.id;
-
-  const [attendancedate, setAttendanceDate] = useState("");
-  const [attendanceentrancetime, setAttendanceEntranceTime] = useState("");
-  const [attendanceexittime, setAttendanceExitTime] = useState("");
-
-
-  const dispatch = useDispatch();
-
-  const attendanceDetails = useSelector((state) => state.attendanceDetails);
-  const { loading, error, attendance } = attendanceDetails;
-
-  const attendanceUpdate = useSelector((state) => state.attendanceUpdate);
-  const { loading: loadingUpdate, error: errorUpdate, success } = attendanceUpdate;
-
-  useEffect(() => {
-    if (success) {
-      dispatch({ type: UPDATE_ATTENDANCES_RESET });
-      history.push("/dashboard/attendancelist");
-    } else {
-      if (!attendance.attendancedate || attendance._id !== attendanceId) {
-        dispatch(loadAttendanceDetails(attendanceId));
-      } else {
-        setAttendanceDate(attendance.attendancedate);
-        setAttendanceEntranceTime(attendance.attendanceentrancetime);
-        setAttendanceExitTime(attendance.attendanceexittime);
-      }
-    }
-  }, [dispatch, history, attendanceId, success, attendance]);
-  const submitHandler = (e) => {
-    e.preventDefault();
-    dispatch(
-      updateAttendance({
-        _id: attendanceId,
-        attendancedate,
-        attendanceentrancetime,
-        attendanceexittime,
-      }),
-    );
-  };
-  
+const AttendanceEdit = (props) => {
+  const userId = window.location.href.split('/')[4];
+  const [formData, setFormData] = useState({attendancedate:"", attendanceentrancetime:"", attendanceexittime:"" });
+  const submitAttendance = (e) =>{
+    e.preventDefault()
+    props.updateAttendanceAsync(formData, userId)
+  }
   return (
     <>
-      <Link to="/dashboard" className="btn btn-light my-3">
+      <ThemeProvider theme={theme}>
+      <Container component="main" maxWidth="xs">
+        <CssBaseline />
+        <Box
+          sx={{
+            marginTop: 8,
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+          }}
+        >
+             <Link to="/dashboard" className="btn btn-light my-3">
         Go Back
       </Link>
-      <FormContainer>
-        <h1>Edit Product</h1>
-        {loadingUpdate && <LoadingSpinner />}
-        {errorUpdate && <Message variant="danger">{errorUpdate}</Message>}
-        {loading ? (
-          <LoadingSpinner />
-        ) : error ? (
-          <Message>{error}</Message>
-        ) : (
-          <Form onSubmit={submitHandler}>
-       
-            <Form.Group controlId="entrancedate">
-              <Form.Label>Entrance Date</Form.Label>
-              <Form.Control
-                type="date"
-                value={attendancedate}
-                onChange={(e) => setAttendanceDate(e.target.value)}
-              ></Form.Control>
-            </Form.Group>
-            <Form.Group controlId="entrancetime">
-            <Form.Label>Entrance Time</Form.Label>
-              <Form.Control
-                type="time"
-                value={attendanceentrancetime}
-                onChange={(e) => setAttendanceEntranceTime(e.target.value)}
-              ></Form.Control>
-            </Form.Group>
-            <Form.Group controlId="countInStock">
-            <Form.Label>Entrance Exit Time</Form.Label>
-              <Form.Control
-                type="type"
-                value={attendanceexittime}
-                onChange={(e) => setAttendanceExitTime(e.target.value)}
-              ></Form.Control>
-            </Form.Group>
-            <Button type="submit" variant="success">
+          <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
+            <LockOutlinedIcon />
+          </Avatar>
+          <Typography component="h1" variant="h5">
+           Edit
+          </Typography>
+          <Box component="form" noValidate onSubmit={submitAttendance} sx={{ mt: 3 }}>
+            <Grid container spacing={2}>
+            <Grid item xs={12}>
+                <TextField
+                  required
+                  fullWidth
+                  id="EntranceDate"
+                  name="EntranceDate"
+                  type="date"
+                  autoComplete="EntranceDate"
+                  value={formData.attendancedate}
+                  onChange={(e) => setFormData({
+                    ...formData, attendancedate: e.target.value
+                  })}
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  required
+                  fullWidth
+                  id="EntranceTime"
+                  name="Entrance Time"
+                  type="time"
+                  autoComplete="Entrance Time" 
+                  value={formData.attendanceentrancetime}
+                   onChange={(e) => setFormData({
+                     ...formData, attendanceentrancetime: e.target.value
+                   })}
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                   required
+                   fullWidth
+                   id="EntranceExitTime"
+                   name="Entrance Exit Time"
+                   type="time"
+                   autoComplete="Entrance Exit Time"
+                   value={formData.attendanceexittime}
+                   onChange={(e) => setFormData({
+                     ...formData, attendanceexittime: e.target.value
+                   })}
+                />
+              </Grid>
+            </Grid>
+            <Button
+              type="submit"
+              fullWidth
+              variant="contained"
+              sx={{ mt: 3, mb: 2 }}
+            >
               Update
             </Button>
-          </Form>
-        )}
-      </FormContainer>
-    </>
-  );
+          </Box>
+        </Box>
+      </Container>
+    </ThemeProvider>
+     </>
+  )
 }
 
-export default AttendanceEdit;
+const mapStateToProps = (state) => {
+  return {
+  listAttend: state.attendances.listAttend,
+  updatedList: state.attendances.updatedList,
+  loading: state.attendances.loading,
+  error: state.attendances.error,
+}
+}
+
+export default connect(mapStateToProps, {loadUserAttendanceAsync, updateAttendanceAsync})(AttendanceEdit);

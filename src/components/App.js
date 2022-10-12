@@ -20,11 +20,7 @@ function App({ isAuthenticated }) {
       {isAuthenticated && <Sidebar />}
       <Switch>
         <Route path='/dashboard' component={Dashboard} />
-        <Route
-          exact
-          path='/dashboard/attendance/:id/edit'
-          component={AttendanceEdit}
-        />
+        <Route exact path='/attendance/:id/edit' component={AttendanceEdit} />
         <Route path='/login' component={Login} />
         <Route path='/signup' component={SignUp} />
         <Route path='/logout' component={Logout} />

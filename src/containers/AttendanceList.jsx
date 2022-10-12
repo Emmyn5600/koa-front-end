@@ -7,12 +7,12 @@ import Attendance from '../components/Attendance';
 const AttendaceList = ({
   attendances, dashboard, onIndexChange,
 }) => (
-  <div className="course-list-main-container">
+  <div className="attendance-list-main-container">
     <Swiper
       spaceBetween={20}
       slidesPerView={1}
       onSlideChange={(item) => onIndexChange(item.realIndex)}
-      className="course-list-swiper"
+      className="attendance-list-swiper"
     >
       {attendances?.allAttendances?.map((attendance) => (
           <Attendance attendance={attendance}  key={attendance.id} dashboard={dashboard} />
