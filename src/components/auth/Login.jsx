@@ -35,7 +35,7 @@ const Login = (props) => {
             <p>
               Hey there, Welcome to Koa-frontend.
               <br />
-              Let&apos;s Sign in to start access the site.
+              Let&apos;s Sign in to get access on the site.
             </p>
           </div>
           <AppInput type="email" name="email" placeholder="Email" />

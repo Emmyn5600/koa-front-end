@@ -5,42 +5,38 @@ import { IconContext } from 'react-icons';
 import { BiEdit } from 'react-icons/bi';
 import defaultAvatar from './defaultAvatar.png';
 
-const Attendance = ({ attendance, dashboard }) => {
-  const {
-    user, attendanceDate, attendanceEntranceTime, attendanceExitTime
-  } = attendance;
-  return (
-    <div className="course-main-wrapper d-flex flex-column">
+const Attendance = ({ attendance, dashboard }) => (
+    <div className="attendance-main-wrapper d-flex flex-column">
       { dashboard && (
-      <button type="button" className="course-delete-btn">
-        <IconContext.Provider value={{ className: 'course-delete-trash-icon' }}>
+      <button type="button" className="attendance-delete-btn">
+        <IconContext.Provider value={{ className: 'attendance-delete-trash-icon' }}>
           <BiEdit />
         </IconContext.Provider>
       </button>
       )}
-      <div className="course-info-wrapper">
-        <div className="course-author-duration d-flex flex-between">
-            <div className="course-author-name d-flex flex-column">
-                  <h4 className="author-name">
-                    {user?.email}
+      <div className="attendance-info-wrapper">
+        <div className="attendance-author-duration d-flex flex-between">
+            <div className="attendance-author-name d-flex flex-column">
+            <h4 className="author-name">
+                    {attendance.user?.email}
                     {' '}
                 : User-Email
                   </h4>
             </div>
             <div className="course-author-name d-flex flex-column">
               <h4 className="author-name">
-                {attendanceDate}
+                {attendance.attendanceDate}
                 {' '}
-              : Entrance  Date
+              : Entrance-Date
               </h4>
             </div>
           <div className="course-duration d-flex flex-center text-center m-4">
-            {attendanceEntranceTime}
+            {attendance.attendanceEntranceTime}
             {' '}
-            : Entrance Time
+            : Entrance-Time
           </div>
           <div>
-            {attendanceExitTime}
+            {attendance.attendanceExitTime}
             {' '}
             : Exit Time
           </div>
@@ -48,7 +44,6 @@ const Attendance = ({ attendance, dashboard }) => {
       </div>
     </div>
   );
-};
 
 Attendance.defaultProps = {
   dashboard: true,

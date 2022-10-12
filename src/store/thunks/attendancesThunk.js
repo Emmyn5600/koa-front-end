@@ -12,7 +12,7 @@ const apiEndPoint = process.env.REACT_APP_API_END_POINT;
 export const loadAttendancesAsync = () => async (dispatch) => {
   dispatch(apiCallBegin());
   try {
-    const response = await axios.get(`${apiEndPoint}getAllAttendances`, {
+    const response = await axios.get(`${apiEndPoint}attendances`, {
       headers: {
         Authorization: `Bearer ${
           JSON.parse(localStorage.getItem("authToken")).token
@@ -25,13 +25,11 @@ export const loadAttendancesAsync = () => async (dispatch) => {
       loadAttendancesFailure(
         error.response
           ? error.response.data.message
-          : "Error loading getAllAttendances"
+          : "Error loading attendances"
       )
     );
     toast.error(
-      error.response
-        ? error.response.data.message
-        : "Error loading getAllAttendances"
+      error.response ? error.response.data.message : "Error loading attendances"
     );
   }
 };

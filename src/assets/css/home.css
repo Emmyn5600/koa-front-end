@@ -28,7 +28,7 @@
     font-size: 1.5rem;
   }
   
-  .course-main-wrapper {
+  .attendance-main-wrapper {
     border-radius: 0.5rem;
     overflow: hidden;
     background-color: var(--white);
@@ -41,35 +41,35 @@
     position: relative;
   }
   
-  .course-delete-btn {
+  .attendance-delete-btn {
     position: absolute;
     top: 1rem;
     right: 1rem;
     z-index: 999;
   }
   
-  .course-delete-trash-icon {
+  .attendance-delete-trash-icon {
     color: var(--primary);
     font-size: 1.8rem;
   }
   
-  .course-info-wrapper {
+  .attendance-info-wrapper {
     padding: 1rem;
   }
   
-  .course-image-wrapper {
+  .attendance-image-wrapper {
     width: 100%;
     overflow: hidden;
     height: 50vh;
   }
   
-  .course-image-wrapper img {
+  .attendance-image-wrapper img {
     width: 100%;
     object-fit: cover;
     height: 100%;
   }
   
-  .course-author-image .image-wrapper {
+  .attendance-author-image .image-wrapper {
     width: 3rem;
     height: 3rem;
     border-radius: 50%;
@@ -77,37 +77,37 @@
     margin-right: 0.7rem;
   }
   
-  .course-author-image .image-wrapper img {
+  .attendance-author-image .image-wrapper img {
     width: 100%;
     height: 100%;
     object-fit: cover;
   }
   
-  .course-name-title h4 {
+  .attendance-name-title h4 {
     margin: 0;
     font-weight: 500;
   }
   
-  .course-image-wrapper .image-wrapper img {
+  .attendance-image-wrapper .image-wrapper img {
     width: 100%;
     height: 100%;
   }
   
-  .course-author-name {
+  .attendance-author-name {
     justify-content: center;
   }
   
-  .course-author-name h4 {
+  .attendance-author-name h4 {
     margin: 0;
     font-weight: 300;
   }
   
-  .course-author-name .author-name {
+  .attendance-author-name .author-name {
     font-weight: 500;
     text-transform: capitalize;
   }
   
-  .course-author-duration {
+  .attendance-author-duration {
     padding-top: 0.7rem;
   }
   
@@ -116,7 +116,7 @@
     font-size: 1.2rem;
   }
   
-  .course-list-swiper {
+  .attendance-list-swiper {
     padding: 2.2rem 0;
   }
   

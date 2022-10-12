@@ -11,6 +11,7 @@ import SignUp from "./auth/SignUp";
 import "react-toastify/dist/ReactToastify.css";
 import Logout from "./auth/Logout";
 import Dashboard from "../containers/Dashboard";
+import AttendanceEdit from "./AttendanceEdit";
 
 function App({ isAuthenticated }) {
   return (
@@ -19,6 +20,11 @@ function App({ isAuthenticated }) {
       {isAuthenticated && <Sidebar />}
       <Switch>
         <Route path='/dashboard' component={Dashboard} />
+        <Route
+          exact
+          path='/dashboard/attendance/:id/edit'
+          component={AttendanceEdit}
+        />
         <Route path='/login' component={Login} />
         <Route path='/signup' component={SignUp} />
         <Route path='/logout' component={Logout} />

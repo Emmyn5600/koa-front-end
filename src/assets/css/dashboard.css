@@ -27,7 +27,7 @@
     padding: 1rem 0;
   }
   
-  .add-course-btn {
+  .add-attendance-btn {
     background-color: var(--primary);
     color: var(--white);
     padding: 0.6rem 0;
@@ -36,7 +36,7 @@
     border-radius: 0.4rem;
   }
   
-  .course-form-main-container {
+  .attendance-form-main-container {
     position: fixed;
     top: 0;
     left: 0;
@@ -76,23 +76,23 @@
     opacity: 0;
   }
   
-  .course-submit-btn-wrapper {
+  .attendance-submit-btn-wrapper {
     margin: 1rem 0;
     margin-top: 3rem;
   }
   
-  .course-form {
+  .attendance-form {
     width: 100%;
     flex: 1;
     padding: 0 2rem;
   }
   
-  .course-form-header {
+  .attendance-form-header {
     margin-bottom: 2rem;
     padding: 0 2rem;
   }
   
-  .course-form-header h1 {
+  .attendance-form-header h1 {
     margin: 0;
     font-size: 1.6rem;
   }
@@ -102,7 +102,7 @@
     margin-bottom: 0.6rem;
   }
   
-  .course-form .input-error {
+  .attendance-form .input-error {
     font-size: 0.9rem;
     color: var(--primary);
   }
@@ -119,15 +119,15 @@
     border-color: var(--primary);
   }
   
-  .course-form-main-container.shown {
+  .attendance-form-main-container.shown {
     visibility: visible;
   }
   
-  .course-form-main-container.shown .app-form-main-content {
+  .attendance-form-main-container.shown .app-form-main-content {
     opacity: 1;
   }
   
-  .course-form-main-container.shown .app-form-overylay {
+  .attendance-form-main-container.shown .app-form-overylay {
     opacity: 1;
   }
   

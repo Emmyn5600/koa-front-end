@@ -15,9 +15,10 @@ const AttendaceList = ({
       className="course-list-swiper"
     >
       {attendances?.allAttendances?.map((attendance) => (
-        <SwiperSlide key={attendance.id} className={attendance.id}>
-          <Attendance attendance={attendance} dashboard={dashboard} />
-        </SwiperSlide>
+        // <SwiperSlide key={attendance.id} className={attendance.id}>
+          <Attendance attendance={attendance}  key={attendance.id} dashboard={dashboard} />
+          /* <User user={user} key={user.id} currentUser={currentUser} /> */
+        // </SwiperSlide>
       ))}
     </Swiper>
   </div>
