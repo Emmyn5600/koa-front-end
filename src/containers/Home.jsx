@@ -20,7 +20,6 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 const theme = createTheme();
 
 const Home = (props) => {
-  const [currentIndex, setCurrentIndex] = React.useState(0);
   const {
     history, currentUser, toggleSidebar,
   } = props;
@@ -43,7 +42,7 @@ const Home = (props) => {
       </div>
         <>
           <div className="home-counters-counter-wrapper d-flex flex-center">
-              <h1>Welcome {currentUser.username}, Create your attendance</h1>
+              <h1>Welcome, Create your attendance</h1>
           </div>
           {' '}
 
@@ -118,7 +117,7 @@ const Home = (props) => {
                   variant="contained"
                   sx={{ mt: 3, mb: 2 }}
                 >
-                  Update
+                  Create Attendance
                 </Button>
               </Box>
             </Box>

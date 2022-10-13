@@ -95,7 +95,7 @@ const AttendanceEdit = (props) => {
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
             >
-              Create Attendance
+              Update
             </Button>
           </Box>
         </Box>
