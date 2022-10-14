@@ -3,6 +3,8 @@ import {
   apiCallBegin,
   loadAttendancesSuccess,
   loadAttendancesFailure,
+  addUserAttendanceSuccess,
+  addUserAttendanceFailure,
   loadUserAttendanceSuccess,
   loadUserAttendanceFailure,
   updateAttendanceSuccess,
@@ -36,6 +38,30 @@ export const loadAttendancesAsync = () => async (dispatch) => {
     );
   }
 };
+
+export const addUserAttendanceAsync =
+  (attendance, userId) => async (dispatch) => {
+    dispatch(apiCallBegin());
+    try {
+      const newAttendance = {};
+      newAttendance.attendanceDate = attendance.attendanceDate;
+      newAttendance.attendanceEntranceTime = attendance.attendanceEntranceTime;
+      const response = await http.post(`${apiEndPoint}attendance/${userId}`, {
+        data: attendance,
+      });
+      dispatch(addUserAttendanceSuccess(response.data));
+      toast.success("Attendance users updated successfully!");
+    } catch (error) {
+      dispatch(
+        addUserAttendanceFailure(
+          error.response ? error.response.data.message : "Something went wrong!"
+        )
+      );
+      toast.error(
+        error.response ? error.response.data.message : "Something went wrong!"
+      );
+    }
+  };
 
 export const loadUserAttendanceAsync = (attendanceId) => async (dispatch) => {
   dispatch(apiCallBegin());

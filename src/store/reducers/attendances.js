@@ -2,10 +2,12 @@ import {
   API_CALL_BEGIN,
   LOAD_ATTENDANCES_SUCCESS,
   LOAD_ATTENDANCES_FAILURE,
+  ADD_USER_ATTENDANCE_SUCCESS,
+  ADD_USER_ATTENDANCE_FAILURE,
   LOAD_USER_ATTENDANCE_SUCCESS,
-  LOAD_USER_ATTENDANCE_FAIL,
+  LOAD_USER_ATTENDANCE_FAILURE,
   UPDATE_ATTENDANCE_SUCCESS,
-  UPDATE_ATTENDANCE_FAIL,
+  UPDATE_ATTENDANCE_FAILURE,
 } from "../actions/actionTypes";
 
 const initialState = {
@@ -37,6 +39,18 @@ const attendances = (state = initialState, action) => {
         loading: false,
         error: action.payload,
       };
+    case ADD_USER_ATTENDANCE_SUCCESS:
+      return {
+        ...state,
+        list: [action.payload, ...state.list],
+        loading: false,
+      };
+    case ADD_USER_ATTENDANCE_FAILURE:
+      return {
+        ...state,
+        error: action.payload,
+        loading: false,
+      };
     case LOAD_USER_ATTENDANCE_SUCCESS:
       return {
         ...state,
@@ -44,7 +58,7 @@ const attendances = (state = initialState, action) => {
         loading: false,
         error: null,
       };
-    case LOAD_USER_ATTENDANCE_FAIL:
+    case LOAD_USER_ATTENDANCE_FAILURE:
       return {
         ...state,
         loading: false,
@@ -57,7 +71,7 @@ const attendances = (state = initialState, action) => {
         error: null,
         loading: false,
       };
-    case UPDATE_ATTENDANCE_FAIL:
+    case UPDATE_ATTENDANCE_FAILURE:
       return {
         ...state,
         error: action.payload,

@@ -16,9 +16,11 @@ import {
   LOAD_ATTENDANCES_SUCCESS,
   LOAD_ATTENDANCES_FAILURE,
   LOAD_USER_ATTENDANCE_SUCCESS,
-  LOAD_USER_ATTENDANCE_FAIL,
+  LOAD_USER_ATTENDANCE_FAILURE,
   UPDATE_ATTENDANCE_SUCCESS,
-  UPDATE_ATTENDANCE_FAIL,
+  UPDATE_ATTENDANCE_FAILURE,
+  ADD_USER_ATTENDANCE_SUCCESS,
+  ADD_USER_ATTENDANCE_FAILURE,
 } from "./actionTypes";
 
 import axios from "axios";
@@ -99,13 +101,23 @@ export const loadAttendancesFailure = (error) => ({
   payload: error,
 });
 
+export const addUserAttendanceSuccess = (attendance) => ({
+  type: ADD_USER_ATTENDANCE_SUCCESS,
+  payload: attendance,
+});
+
+export const addUserAttendanceFailure = (error) => ({
+  type: ADD_USER_ATTENDANCE_FAILURE,
+  payload: error,
+});
+
 export const loadUserAttendanceSuccess = (attendance) => ({
   type: LOAD_USER_ATTENDANCE_SUCCESS,
   payload: attendance,
 });
 
 export const loadUserAttendanceFailure = (error) => ({
-  type: LOAD_USER_ATTENDANCE_FAIL,
+  type: LOAD_USER_ATTENDANCE_FAILURE,
   payload: error,
 });
 
@@ -115,6 +127,6 @@ export const updateAttendanceSuccess = (attendance) => ({
 });
 
 export const updateAttendanceFailure = (error) => ({
-  type: UPDATE_ATTENDANCE_FAIL,
+  type: UPDATE_ATTENDANCE_FAILURE,
   payload: error,
 });

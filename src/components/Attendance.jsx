@@ -24,14 +24,14 @@ const Attendance = ({ attendance, dashboard }) => (
                 : User-Email
                   </h4>
             </div>
-            <div className="course-author-name d-flex flex-column">
+            <div className="attendance-author-name d-flex flex-column">
               <h4 className="author-name">
                 {attendance.attendanceDate}
                 {' '}
               : Entrance-Date
               </h4>
             </div>
-          <div className="course-duration d-flex flex-center text-center m-4">
+          <div className="attendance-duration d-flex flex-center text-center m-4">
             {attendance.attendanceEntranceTime}
             {' '}
             : Entrance-Time
